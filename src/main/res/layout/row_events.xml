@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:descendantFocusability="blocksDescendants"
+    >
+    <!-- android:descendantFocusability="blocksDescendants" permet de click sur les items  -->
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="24sp"
+        tools:text="@string/text_view_event_title" />
+
+    <TextView
+        android:id="@+id/event_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/event_title"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/event_title"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        tools:text="@string/text_view_event_category" />
+
+    <TextView
+        android:id="@+id/event_date_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_title"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/event_city"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/event_date_start"
+        tools:text="@string/text_view_event_city"
+        />
+
+    <Switch
+        android:id="@+id/switch_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/event_city"
+        android:text="@string/switch_participation" />
+
+</RelativeLayout>

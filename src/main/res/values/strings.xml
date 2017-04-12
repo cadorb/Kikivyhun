@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">KikiVyhun</string>
+    <string name="text_view_authentication">Authentication</string>
+    <string name="edit_text_login">Login</string>
+    <string name="edit_text_password">Password</string>
+    <string name="btn_connect">Connection</string>
+    <string name="btn_register">Register</string>
+    <string name="text_view_save_password">Save password</string>
+    <string name="text_view_event_title">Event Title</string>
+    <string name="text_view_event_category">Event Category</string>
+    <string name="text_view_event_city">Event City</string>
+    <string name="switch_participation">Not present</string>
+    <string name="switch_participation_ok">Present</string>
+</resources>
