@@ -11,4 +11,5 @@
     <string name="text_view_event_city">Event City</string>
     <string name="switch_participation">Not present</string>
     <string name="switch_participation_ok">Present</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

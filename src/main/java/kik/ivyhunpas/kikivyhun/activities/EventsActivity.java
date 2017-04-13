@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -43,7 +42,11 @@ public class EventsActivity extends AppCompatActivity {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Event item = adapter.getItem(position);
-                Toast.makeText(EventsActivity.this, "long click on " + item.getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EventsActivity.this, MapsActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("EVENT", item);
+                intent.putExtras(bundle);
+                startActivity(intent);
                 return true;
             }
         });

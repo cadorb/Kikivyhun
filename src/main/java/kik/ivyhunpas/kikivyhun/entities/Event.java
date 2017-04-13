@@ -1,5 +1,7 @@
 package kik.ivyhunpas.kikivyhun.entities;
 
+import android.provider.BaseColumns;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -98,5 +100,30 @@ public class Event extends EntityBase {
 
     public void setPlace(Place place) {
         this.place = place;
+    }
+
+    public static class EventEntry implements BaseColumns {
+        public static final String TABLE_NAME = "event";
+        public static final String COLUMN_NAME_NAME = "name";
+        public static final String COLUMN_NAME_TITLE = "title";
+        public static final String COLUMN_NAME_START_DATE = "start_date";
+        public static final String COLUMN_NAME_END_DATE = "end_date";
+        public static final String COLUMN_NAME_MAX_PARTICIPANTS = "max_participants";
+        public static final String COLUMN_NAME_CATEGORY_ID = "category_id";
+        public static final String COLUMN_NAME_PLACE_ID = "place_id";
+
+        public static final String SQL_CREATE_ENTRIES =
+                "CREATE TABLE " + EventEntry.TABLE_NAME + " (" +
+                        EntityBase.EntityBaseEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY," +
+                        EventEntry.COLUMN_NAME_NAME + " TEXT, " +
+                        EventEntry.COLUMN_NAME_TITLE + " TEXT, " +
+                        EventEntry.COLUMN_NAME_START_DATE + " NUMERIC, " +
+                        EventEntry.COLUMN_NAME_END_DATE + " NUMERIC, " +
+                        EventEntry.COLUMN_NAME_MAX_PARTICIPANTS + " INTEGER, " +
+                        EventEntry.COLUMN_NAME_CATEGORY_ID + " INTEGER, " +
+                        EventEntry.COLUMN_NAME_PLACE_ID + " INTEGER);";
+
+        public static final String SQL_DELETE_ENTRIES =
+                "DROP TABLE IF EXISTS " + EventEntry.TABLE_NAME + ";";
     }
 }

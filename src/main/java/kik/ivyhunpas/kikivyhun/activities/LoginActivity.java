@@ -11,14 +11,17 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import kik.ivyhunpas.kikivyhun.R;
 import kik.ivyhunpas.kikivyhun.entities.User;
-import kik.ivyhunpas.kikivyhun.utils.gps.MyLocationListener;
+import kik.ivyhunpas.kikivyhun.utils.database.DatabaseManager;
+import kik.ivyhunpas.kikivyhun.utils.gps.UserLocationListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -80,26 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                     currentUser.setLastname("lastname");
 
 
-                    // Force et récupère la location gps
-                    LocationManager locationManager = (LocationManager)
-                            getSystemService(Context.LOCATION_SERVICE);
-
-                    LocationListener locationListener = new MyLocationListener(LoginActivity.this, currentUser);
-                    if (ActivityCompat.checkSelfPermission(
-                            LoginActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED
-                            && ActivityCompat.checkSelfPermission(
-                            LoginActivity.this,
-                            Manifest.permission.ACCESS_COARSE_LOCATION)
-                            == PackageManager.PERMISSION_GRANTED) {
-
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER, 5000, 10, locationListener);
-                    }
-
-
-                    currentUser.setGps(locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+                    // Force et récupère la localisation gps
+                    UserLocationListener.getInstance()
+                            .setUserLocationListener(LoginActivity.this, currentUser);
 
                     startActivity(new Intent(LoginActivity.this, EventsActivity.class));
                 }
@@ -110,8 +96,18 @@ public class LoginActivity extends AppCompatActivity {
         this.register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                DatabaseManager databaseManager = new DatabaseManager(LoginActivity.this);
+                User user = new User();
+                user.setLogin(login.getText().toString());
+                user.setPassword(password.getText().toString());
+
+                databaseManager.insertUserData(user);
+
+                Log.d("TEST", String.valueOf(user.getId()));
             }
+
+
+                //startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         });
 
 
